@@ -1,0 +1,58 @@
+use Libraries.Robots.Lego.Button
+use Libraries.Robots.Lego.Sound
+use Libraries.Robots.Lego.Screen
+                                    //simple button program for EV3 ego Robot
+Button buttonCtrl
+Sound soundCtrl
+Screen screenCtrl
+
+screenCtrl:OutputCenterLarge("Hello", 1)
+screenCtrl:OutputCenterLarge("World", 4)
+soundCtrl:Beep()
+buttonCtrl:SetLightPattern(1)
+repeat until buttonCtrl:IsButtonPressed(buttonCtrl:ESCAPE_BUTTON)
+    if buttonCtrl:IsButtonPressed(buttonCtrl:LEFT_BUTTON)
+        soundCtrl:PlayTone(1000, 200)
+        buttonCtrl:SetLightPattern(2)
+        screenCtrl:Clear()
+        screenCtrl:Output("Left Button",2)
+        screenCtrl:Output("You pressed the",1)
+    elseif buttonCtrl:IsButtonPressed(buttonCtrl:RIGHT_BUTTON)
+        screenCtrl:Clear()
+        buttonCtrl:SetLightPattern(3)
+        screenCtrl:Output("Right Button",3,6)
+        screenCtrl:Output("You pressed the",1)
+        soundCtrl:PlayTone(80, 200)
+    elseif buttonCtrl:IsButtonPressed(buttonCtrl:UP_BUTTON)
+        screenCtrl:Clear()
+        buttonCtrl:SetLightPattern(4)
+        screenCtrl:OutputCenter("Up Button",2)
+        screenCtrl:Output("You pressed the",1)
+        soundCtrl:BeepSequenceUp()
+    elseif buttonCtrl:IsButtonPressed(buttonCtrl:DOWN_BUTTON)
+        soundCtrl:BeepSequenceDown()
+        screenCtrl:Clear()
+        buttonCtrl:SetLightPattern(6)
+        screenCtrl:OutputCenter("Down Button",6)
+        screenCtrl:Output("You pressed the",1)
+    elseif buttonCtrl:IsButtonPressed(buttonCtrl:CENTER_BUTTON)
+        soundCtrl:BeepTwice()
+        screenCtrl:Clear()
+        buttonCtrl:SetLightPattern(6)
+        screenCtrl:OutputCenter("Center Button",4)
+        screenCtrl:Output("You pressed the",1)
+    end
+end
+screenCtrl:Clear()
+screenCtrl:OutputCenterLarge("ESCAPE",3)
+screenCtrl:OutputCenter("You pressed the",1)
+screenCtrl:OutputCenterLarge("ByeBye",5)
+buttonCtrl:SetLightPattern(6)
+soundCtrl:PlayTone(80, 2000)
+screenCtrl:ScrollUp(3)
+soundCtrl:PlayTone(80, 200)
+screenCtrl:ScrollUp(2)
+soundCtrl:PlayTone(40, 200)
+screenCtrl:ScrollUp(3)
+soundCtrl:PlayTone(160, 200)
+soundCtrl:Buzz()
